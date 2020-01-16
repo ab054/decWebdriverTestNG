@@ -13,6 +13,7 @@ public class XpathTests {
     }
 
 
+    //TODO: use all of the mentioned types of Xpath
     @Test
     public void test001() {
         driver = new FirefoxDriver();
