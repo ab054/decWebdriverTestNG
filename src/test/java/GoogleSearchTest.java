@@ -5,10 +5,10 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
+import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeSuite;
+import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
-
-import java.util.concurrent.TimeUnit;
 
 public class GoogleSearchTest {
 
@@ -19,11 +19,20 @@ public class GoogleSearchTest {
         System.setProperty("webdriver.gecko.driver", "C:\\Users\\barab\\IdeaProjects\\decWebdriverTestNG\\src\\test\\resources\\geckodriver.exe");
     }
 
+    @AfterTest
+    public void afterTest(){
+        driver.quit();
+    }
+
+    //TODO: parametrize your existing tests
+    @Parameters({"queryTextParameter"})
     @Test
-    public void test0001() {
+    public void test0001(String parameter1) {
+        String queryText = parameter1;
+
         openBrowser();
         navigateToMainPage();
-        typeQuery();
+        typeQuery(queryText);
         submitSearch();
         waitForResultsPage();
         assertResultsPage();
@@ -45,10 +54,10 @@ public class GoogleSearchTest {
         element.submit();
     }
 
-    private void typeQuery() {
+    private void typeQuery(String textToType) {
         String selector = "#tsf > div:nth-child(2) > div.A8SBwf > div.RNNXgb > div > div.a4bIc > input";
         WebElement element = driver.findElement(By.cssSelector(selector));
-        element.sendKeys("Portnov Computer School");
+        element.sendKeys(textToType);
     }
 
     private void navigateToMainPage() {
