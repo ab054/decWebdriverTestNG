@@ -13,15 +13,5 @@
         </classes>
     </test>
 
-    <test name="GoogleSearchUITest2" >
-        <parameter name="queryTextParameter"  value="ANOTHER PARAMETER FROM TESTNG.XML"/>
-        <classes>
-            <class name="GoogleSearchTest">
-                <methods>
-                    <include name="test0001"/>
-                </methods>
-            </class>
-        </classes>
-    </test>
 
 </suite>
